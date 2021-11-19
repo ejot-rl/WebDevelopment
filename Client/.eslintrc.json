@@ -1,0 +1,187 @@
+{
+	"root": true,
+	"ignorePatterns": [
+	  "projects/**/*"
+	],
+	"overrides": [
+	  {
+		 "files": [
+			"*.ts"
+		 ],
+		 "parserOptions": {
+			"project": {
+			  "project": "tsconfig.json",
+			  "tsconfigRootDir": "Client"
+			},
+			"createDefaultProgram": true
+		 },
+		 "extends": [
+			"plugin:@angular-eslint/ng-cli-compat",
+			"plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+			"plugin:@angular-eslint/template/process-inline-templates"
+		 ],
+		 "rules": {
+			"@angular-eslint/component-selector": [
+			  "error",
+			  {
+				 "type": "element",
+				 "prefix": "app",
+				 "style": "kebab-case"
+			  }
+			],
+			"@angular-eslint/directive-selector": [
+			  "error",
+			  {
+				 "type": "attribute",
+				 "prefix": "app",
+				 "style": "camelCase"
+			  }
+			],
+			"@angular-eslint/no-host-metadata-property": "off",
+			"@angular-eslint/no-input-rename": "off",
+			"@angular-eslint/no-inputs-metadata-property": "off",
+			"@angular-eslint/no-outputs-metadata-property": "off",
+			"@typescript-eslint/consistent-type-definitions": "error",
+			"@typescript-eslint/dot-notation": "off",
+			"@typescript-eslint/quotes": "off",
+			"@typescript-eslint/explicit-member-accessibility": [
+			  "error",
+			  {
+				 "accessibility": "explicit",
+				 "overrides": {
+					"accessors": "explicit",
+					"constructors": "off"
+				 }
+			  }
+			],
+			"brace-style": [
+			  "error",
+			  "1tbs"
+			],
+			"id-blacklist": "off",
+			"id-match": "off",
+			"import/order": "error",
+			"max-len": [
+			  "warn",
+			  {
+				 "code": 180
+			  }
+			],
+			"no-bitwise": "off",
+			"no-underscore-dangle": "off",
+			"quotes": [
+			  "error",
+			  "double"
+			],
+			"jsdoc/newline-after-description": "off",
+			"object-shorthand": "off",
+			"@typescript-eslint/member-ordering": [
+			  "error",
+			  {
+				 "default": [
+					"private-static-field",
+					"private-instance-field",
+					"public-static-field",
+					"public-instance-field",
+					"public-static-method",
+					"public-instance-method",
+					"protected-static-method",
+					"protected-instance-method",
+					"private-static-method",
+					"private-instance-method"
+				 ]
+			  }
+			],
+			"@typescript-eslint/naming-convention": [
+			  "error",
+			  {
+				 "selector": "memberLike",
+				 "format": [
+					"camelCase"
+				 ]
+			  },
+			  {
+				 "selector": "typeLike",
+				 "format": [
+					"PascalCase"
+				 ]
+			  },
+			  {
+				 "selector": "method",
+				 "format": [
+					"camelCase"
+				 ]
+			  },
+			  {
+				 "selector": "enumMember",
+				 "format": [
+					"PascalCase"
+				 ]
+			  },
+			  {
+				 "selector": "interface",
+				 "format": [
+					"PascalCase"
+				 ],
+				 "prefix": [
+					"I"
+				 ]
+			  },
+			  {
+				 "selector": "property",
+				 "modifiers": [
+					"private"
+				 ],
+				 "format": [
+					"camelCase"
+				 ],
+				 "leadingUnderscore": "require"
+			  },
+			  {
+				 "selector": "property",
+				 "modifiers": [
+					"public",
+					"protected"
+				 ],
+				 "format": [
+					"camelCase"
+				 ],
+				 "leadingUnderscore": "forbid"
+			  },
+			  {
+				 "selector": "parameterProperty",
+				 "modifiers": [
+					"private"
+				 ],
+				 "format": [
+					"camelCase"
+				 ],
+				 "leadingUnderscore": "require"
+			  },
+			  {
+				 "selector": "parameterProperty",
+				 "modifiers": [
+					"public",
+					"protected"
+				 ],
+				 "format": [
+					"camelCase"
+				 ],
+				 "leadingUnderscore": "forbid"
+			  }
+			],
+			"no-shadow": "off"
+		 }
+	  },
+	  {
+		 "files": [
+			"*.html"
+		 ],
+		 "extends": [
+			"plugin:@angular-eslint/template/recommended"
+		 ],
+		 "rules": {}
+	  }
+	]
+ }
+ 
