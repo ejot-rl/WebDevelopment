@@ -1,0 +1,19 @@
+{
+	"name": "WebDevelopment",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "5.0",
+			"NODE_VERSION": "14"
+		}
+	},
+	"extensions": [
+		"hookyqr.beautify",
+		"dbaeumer.vscode-eslint",
+		"ms-dotnettools.csharp"
+	],
+	"forwardPorts": [
+		5000,
+		5001
+	]
+}
