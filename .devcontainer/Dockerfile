@@ -1,7 +1,46 @@
-ARG VARIANT="6.0-bullseye-slim"
-FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-focal
 
-ARG NODE_VERSION="none"
-RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
+RUN echo 'set show-all-if-ambiguous on' >> /etc/inputrc
+RUN echo '"\\e[Z": menu-complete' >> /etc/inputrc
 
-RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g @angular/cli@11" 2>&1
+ENV \
+		# Enable detection of running in a container
+		DOTNET_RUNNING_IN_CONTAINER=true \
+		# Enable correct mode for dotnet watch (only mode supported in a container)
+		DOTNET_USE_POLLING_FILE_WATCHER=true \
+		# Skip extraction of XML docs - generally not useful within an image/container - helps performance
+		NUGET_XMLDOC_MODE=skip
+
+# Install .Net required libraries
+RUN apt-get update \
+	&& apt-get install -y wget
+
+# Set up .Net repository
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+	&& dpkg -i packages-microsoft-prod.deb
+
+# Install transport-https
+RUN apt-get update \
+	&& apt-get install -y apt-transport-https
+
+# Install .Net Core and Entity Framework tools
+RUN apt-get update \
+	&& apt-get install -y dotnet-sdk-5.0 \
+	&& dotnet help \
+	&& dotnet tool install --global dotnet-ef
+
+# Install node.js required libraries
+RUN apt-get update \
+	&& apt-get install -y curl
+
+# Set up node.js repository
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+
+# Install node.js
+RUN apt-get install -y nodejs
+
+# Install essentials
+RUN apt-get install -y build-essential
+
+# Install Angular's cli
+RUN npm i -g @angular/cli@^11
